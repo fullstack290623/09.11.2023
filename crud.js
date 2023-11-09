@@ -77,6 +77,7 @@ function put(id, user) {
     const index = users.indexOf(filter_users[0])
     // if the id does not exist, use the id parameter otherwise use the user's id
     users[index] = { id: id, ...user } // allow modify the id
+    return users[index]
 }
 function patch(id, user) {
     // if id exists then update only the fields given in the user
@@ -94,6 +95,7 @@ function patch(id, user) {
     const index = users.indexOf(filter_users[0])
     // if the id does not exist, use the id parameter otherwise use the user's id
     users[index] = { ...users[index], ...user } // allow modify the id    
+    return users[index]
 }
 function delete_by_id(id) {
     // if id exists then remove it from the array
