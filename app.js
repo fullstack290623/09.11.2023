@@ -27,9 +27,10 @@ app.get('/api/users/:id', (request, response) => {
 })
 app.post('/api/users', (request, response) => {
     const new_user = request.body
+    const updated_user = crud.post(new_user)
     // call crud.post
     // return the new created item (change the next line )
-    response.json(request.body)
+    response.json(updated_user)
 })
 
 // 1. finish post + check if works (also make sure you return the new created user)
