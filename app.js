@@ -1,0 +1,42 @@
+
+const crud = require('./crud')
+
+const express = require('express')
+const body_parser = require('body-parser')
+
+const app = express()
+const port = 3000
+app.use(body_parser.json())
+
+// GET POST PUT DELETE PATCH
+app.get('/api/users', (request, response) => {
+    console.log(request);
+    console.log('someone did a get for /api/users URL');
+    //response.send('<h1 style="color:blue">hi</h1>')
+    response.json( crud.get() )
+})
+app.get('/api/users/:id', (request, response) => {
+    const user_id = parseInt(request.params.id)
+    const user = crud.get_by_id(user_id)
+    if (user) { 
+        response.json(user)
+    }
+    else {
+        response.status(404).json({ "error": `cannot find user with id ${user_id}`})
+    }
+})
+app.post('/api/users', (request, response) => {
+    const new_user = request.body
+    // call crud.post
+    // return the new created item (change the next line )
+    response.json(request.body)
+})
+
+// 1. finish post + check if works (also make sure you return the new created user)
+// 2. put/:id
+// 3. patch/:id
+// 4. delete/:id
+
+app.listen(3000, () => {
+    console.log('Express server is running ....');
+})
